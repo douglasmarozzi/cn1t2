@@ -2,23 +2,13 @@ import streamlit as st
 import plotly.graph_objs as go
 import yfinance as yf
 
-st.title('Hello World')
+# Lista de bolsas disponíveis
+bolsas_disponiveis = ["B3", "NASDAQ", "NYSE"]
 
-st.text('Inseria seu nome')
-nome = st.text_input('Nome')
-
-st.write(f'Olá {nome}')
-
-def inverter_texto(texto):
-    return texto[::-1]
-
-
-nome_invertido = inverter_texto(nome)
-st.write(f'Seu nome invertido é {nome_invertido}')
-
-# perguntar ao usuario o nome da ação, data inicial e data final e plotar o grafico do preço da ação no final do dia
-st.text('Insira o nome da ação')
-acao = st.text_input('Ação') + '.SA'
+# Perguntar ao usuário a bolsa e o nome da ação, data inicial e data final e plotar o gráfico do preço da ação no final do dia
+st.text('Selecione a bolsa e insira o nome da ação')
+bolsa = st.selectbox('Bolsa', bolsas_disponiveis)
+acao = st.text_input('Ação') + f'.{bolsa}'
 
 st.text('Insira a data inicial')
 data_inicial = st.date_input('Data Inicial')
@@ -30,11 +20,11 @@ b1 = st.button('Buscar')
 if b1:
     acao = yf.download(acao, start=data_inicial, end=data_final)
     fig = go.Figure(data=[go.Candlestick(x=acao.index,
-                                      open=acao['Open'],
-                                      high=acao['High'],
-                                      low=acao['Low'],
-                                      close=acao['Close'])])
+                                         open=acao['Open'],
+                                         high=acao['High'],
+                                         low=acao['Low'],
+                                         close=acao['Close'])])
 
     st.plotly_chart(fig)
-    # printar o dataframe
+    # Printar o dataframe
     st.write(acao)
