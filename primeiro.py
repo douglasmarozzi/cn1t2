@@ -63,6 +63,3 @@ if st.button('Optimize Portfolio'):
     st.write(f'Expected Portfolio Return: {expected_return}')
     st.write(f'Portfolio Volatility: {volatility}')
     st.write(f'Sharpe Ratio: {sharpe_ratio}')
-
-                                          
-
