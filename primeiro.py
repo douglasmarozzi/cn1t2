@@ -68,6 +68,4 @@ if st.button('Optimize Portfolio'):
                                              high=acao['High'],
                                              low=acao['Low'],
                                              close=acao['Close'])])
-        st.plotly_chart(fig)
-    except Exception as e:
-        st.error(f"Erro: {str(e)}")
+
