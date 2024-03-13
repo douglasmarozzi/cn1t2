@@ -31,13 +31,15 @@ data_final = st.date_input('Data Final')
 
 b1 = st.button('Buscar')
 if b1:
-    acao = yf.download(acao, start=data_inicial, end=data_final)
-    fig = go.Figure(data=[go.Candlestick(x=acao.index,
-                                         open=acao['Open'],
-                                         high=acao['High'],
-                                         low=acao['Low'],
-                                         close=acao['Close'])])
+    try:
+        acao = yf.download(acao, start=data_inicial, end=data_final)
+        st.write(acao)  # Print retrieved data for debugging
 
-    st.plotly_chart(fig)
-    # Print the dataframe
-    st.write(acao)
+        fig = go.Figure(data=[go.Candlestick(x=acao.index,
+                                             open=acao['Open'],
+                                             high=acao['High'],
+                                             low=acao['Low'],
+                                             close=acao['Close'])])
+        st.plotly_chart(fig)
+    except Exception as e:
+        st.error(f"Erro: {str(e)}")
