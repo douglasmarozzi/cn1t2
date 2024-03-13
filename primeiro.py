@@ -64,8 +64,5 @@ if st.button('Optimize Portfolio'):
     st.write(f'Portfolio Volatility: {volatility}')
     st.write(f'Sharpe Ratio: {sharpe_ratio}')
 
-                                             open=acao['Open'],
-                                             high=acao['High'],
-                                             low=acao['Low'],
-                                             close=acao['Close'])])
+                                          
 
